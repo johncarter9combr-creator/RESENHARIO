@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resenhas - Resenhário</title><link rel="stylesheet" href="../css/style.css"></head>
+<body><header class="topo"><a class="marca" href="../index.html">Resenhário</a><nav>
+<a href="../index.html">Início</a><a href="livros.html">Livros</a><a href="filmes.html">Filmes</a>
+            <a href="series.html">Séries</a><a href="estante.html">Minha estante</a><a href="reviews.html">Resenhas</a><a href="login.html">Entrar</a>
+</nav></header><main class="pagina"><section class="cabecalho-pagina"><p class="sobretitulo">OPINIÕES DA COMUNIDADE</p><h1>Resenhas</h1><p>Compartilhe sua opinião sobre os livros que leu.</p></section>
+<section class="secao"><h2>Escrever resenha</h2><form id="form-review">
+<label for="review-livro">Livro</label><select id="review-livro" required></select>
+<label for="review-nota">Nota (0 a 10)</label><input id="review-nota" type="number" min="0" max="10" step="1" required>
+<label for="review-comentario">Comentário</label><textarea id="review-comentario" rows="4" required placeholder="O que achou da história?"></textarea>
+<button type="submit">Publicar resenha</button></form><p id="mensagem-reviews" class="mensagem" aria-live="polite"></p></section>
+<section class="secao"><h2>Resenhas publicadas</h2><div id="lista-reviews" class="lista-reviews"></div></section></main>
+<footer>© 2026 Resenhário · Histórias para ler e assistir.</footer><script src="../js/script.js"></script></body></html>
