@@ -1,6 +1,6 @@
-
 using Microsoft.EntityFrameworkCore;
 using Resenhario.Api.Data;
+using Resenhario.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +17,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         connectionString,
         ServerVersion.AutoDetect(connectionString)
     ));
+
+builder.Services.AddHttpClient<GoogleBooksService>();
+builder.Services.AddHttpClient<TmdbService>();
 
 builder.Services.AddCors(options =>
 {

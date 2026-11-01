@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resenhário</title>
+    <title>Resenhário — Catálogo Literário & Adaptações Cinematográficas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,9 +11,9 @@
         <a class="marca" href="index.html">Resenhário</a>
         <nav>
             <a href="index.html">Início</a>
-            <a href="paginas/filmes.html">Filmes</a>
             <a href="paginas/livros.html">Livros</a>
-            <a href="paginas/series.html">Séries</a>
+            <a href="paginas/filmes.html">Filmes</a>
+            <a href="paginas/ranking.html">Ranking Adaptações</a>
             <a href="paginas/reviews.html">Resenhas</a>
             <a href="paginas/estante.html">Minha estante</a>
             <a href="paginas/login.html">Perfil</a>
@@ -22,54 +21,133 @@
     </header>
 
     <main class="home">
+        <!-- Hero Section -->
         <section class="hero-cinema">
             <div class="hero-conteudo">
-                <p class="sobretitulo">SEU PRÓXIMO UNIVERSO COMEÇA AQUI</p>
-                <h1>Histórias que ficam com você.</h1>
-                <p>Descubra o que assistir, encontre sua próxima leitura e compartilhe suas opiniões com quem também ama boas histórias.</p>
+                <p class="sobretitulo">DO LIVRO ÀS TELAS · DA LEITURA AO CINEMA</p>
+                <h1>O diálogo definitivo entre literatura e cinema.</h1>
+                <p>Organize sua estante virtual com status de leitura, consulte metadados via Google Books e TMDB, e descubra o ranking das adaptações mais fiéis.</p>
                 <div class="hero-acoes">
-                    <a class="botao" href="paginas/filmes.html">Explorar filmes</a>
-                    <a class="botao botao-secundario" href="paginas/livros.html">Encontrar livros</a>
+                    <a class="botao" href="paginas/ranking.html">Ver Ranking de Adaptações</a>
+                    <a class="botao botao-secundario" href="paginas/livros.html">Explorar Livros</a>
                 </div>
             </div>
-            <span class="hero-etiqueta">LEIA · ASSISTA · RESENHE</span>
+            <span class="hero-etiqueta">LEIA · ASSISTA · COMPARE · RESENHE</span>
         </section>
 
         <div class="home-conteudo">
-            <section class="secao secao-carrossel">
-                <div class="titulo-secao"><div><p class="sobretitulo">PARA SUA PRÓXIMA SESSÃO</p><h2>Filmes em alta</h2></div><a href="paginas/filmes.html">Ver todos ↗</a></div>
-                <div id="inicio-filmes" class="grade-capas faixa-capas"></div>
-                <p id="inicio-mensagem-filmes" class="mensagem" aria-live="polite"></p>
+            <!-- Estatísticas da Plataforma (Feed Social) -->
+            <section class="secao">
+                <div class="feed-estatisticas">
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="stat-livros">-</div>
+                        <div class="estatistica-rotulo">Livros no Catálogo</div>
+                    </div>
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="stat-adaptacoes">-</div>
+                        <div class="estatistica-rotulo">Adaptações Vinculadas</div>
+                    </div>
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="stat-reviews">-</div>
+                        <div class="estatistica-rotulo">Resenhas Comunitárias</div>
+                    </div>
+                </div>
             </section>
 
+            <!-- Ranking Destaque de Adaptações -->
+            <section class="secao">
+                <div class="titulo-secao">
+                    <div>
+                        <p class="sobretitulo">FIDELIDADE CINEMATOGRÁFICA</p>
+                        <h2>Adaptações Mais Votadas</h2>
+                    </div>
+                    <a href="paginas/ranking.html">Ver Ranking Completo ↗</a>
+                </div>
+                <div id="inicio-ranking" class="grade-ranking"></div>
+                <p id="inicio-mensagem-ranking" class="mensagem" aria-live="polite"></p>
+            </section>
+
+            <!-- Carrossel de Livros -->
             <section class="secao secao-carrossel">
-                <div class="titulo-secao"><div><p class="sobretitulo">VIRE A PRÓXIMA PÁGINA</p><h2>Livros em destaque</h2></div><a href="paginas/livros.html">Ver todos ↗</a></div>
+                <div class="titulo-secao">
+                    <div>
+                        <p class="sobretitulo">INTEGRAÇÃO GOOGLE BOOKS</p>
+                        <h2>Livros no Catálogo</h2>
+                    </div>
+                    <a href="paginas/livros.html">Ver todos ↗</a>
+                </div>
                 <div id="inicio-livros" class="grade-capas faixa-capas"></div>
                 <p id="inicio-mensagem-livros" class="mensagem" aria-live="polite"></p>
             </section>
 
+            <!-- Carrossel de Filmes -->
             <section class="secao secao-carrossel">
-                <div class="titulo-secao"><div><p class="sobretitulo">MARATONA À VISTA</p><h2>Séries para descobrir</h2></div><a href="paginas/series.html">Ver todas ↗</a></div>
-                <div id="inicio-series" class="grade-capas faixa-capas"></div>
-                <p id="inicio-mensagem-series" class="mensagem" aria-live="polite"></p>
+                <div class="titulo-secao">
+                    <div>
+                        <p class="sobretitulo">INTEGRAÇÃO TMDB API</p>
+                        <h2>Filmes & Adaptações</h2>
+                    </div>
+                    <a href="paginas/filmes.html">Ver todos ↗</a>
+                </div>
+                <div id="inicio-filmes" class="grade-capas faixa-capas"></div>
+                <p id="inicio-mensagem-filmes" class="mensagem" aria-live="polite"></p>
             </section>
 
+            <!-- Feed Comunitário: Últimas Resenhas -->
+            <section class="secao">
+                <div class="titulo-secao">
+                    <div>
+                        <p class="sobretitulo">PENSAMENTO CRÍTICO</p>
+                        <h2>Feed Social — Últimas Resenhas</h2>
+                    </div>
+                    <a href="paginas/reviews.html">Escrever Resenha ↗</a>
+                </div>
+                <div id="inicio-feed-reviews" class="lista-reviews"></div>
+                <p id="inicio-mensagem-reviews" class="mensagem" aria-live="polite"></p>
+            </section>
+
+            <!-- Convite para Comunidade -->
             <section class="convite-comunidade">
-                <div><p class="sobretitulo">NÃO É SÓ SOBRE CONSUMIR HISTÓRIAS</p><h2>É sobre o que elas despertam em você.</h2><p>Monte sua estante, acompanhe o que já viu ou leu e deixe sua própria resenha.</p></div>
-                <a class="botao" href="paginas/login.html">Entrar na comunidade</a>
+                <div>
+                    <p class="sobretitulo">NÃO É SÓ SOBRE CONSUMIR HISTÓRIAS</p>
+                    <h2>É sobre o diálogo entre o papel e as telas.</h2>
+                    <p>Crie sua conta para gerenciar seu status de leitura (Quero Ler, Lendo, Lido, Abandonado), avaliar a fidelidade das produções e participar dos rankings.</p>
+                </div>
+                <a class="botao" href="paginas/login.html">Criar Conta Gratuita</a>
             </section>
 
+            <!-- Atalhos de Navegação -->
             <section class="secao bloco-final">
-                <div class="titulo-secao"><div><p class="sobretitulo">TUDO NO SEU LUGAR</p><h2>Seu carrinho de entretenimento</h2></div></div>
+                <div class="titulo-secao">
+                    <div>
+                        <p class="sobretitulo">RECURSOS DO SISTEMA</p>
+                        <h2>Módulos do Resenhário</h2>
+                    </div>
+                </div>
                 <div class="atalhos-home">
-                    <a href="paginas/estante.html"><span>01</span><h3>Minha estante</h3><p>Guarde o que quer ler e assistir.</p><b>Organizar estante ↗</b></a>
-                    <a href="paginas/reviews.html"><span>02</span><h3>Resenhas</h3><p>Registre suas impressões e avaliações.</p><b>Ver resenhas ↗</b></a>
-                    <a href="paginas/login.html"><span>03</span><h3>Seu perfil</h3><p>Acesse sua conta e personalize sua coleção.</p><b>Acessar perfil ↗</b></a>
+                    <a href="paginas/ranking.html">
+                        <span>01</span>
+                        <h3>Ranking de Adaptações</h3>
+                        <p>Descubra notas comparativas de fidelidade entre livros e filmes.</p>
+                        <b>Acessar ranking ↗</b>
+                    </a>
+                    <a href="paginas/estante.html">
+                        <span>02</span>
+                        <h3>Minha Estante Virtual</h3>
+                        <p>Organize suas leituras com Quero Ler, Lendo, Lido e Abandonado.</p>
+                        <b>Organizar estante ↗</b>
+                    </a>
+                    <a href="paginas/reviews.html">
+                        <span>03</span>
+                        <h3>Resenhas Duplas</h3>
+                        <p>Avalie a qualidade da obra e a fidelidade da adaptação de 1 a 5 estrelas.</p>
+                        <b>Publicar resenha ↗</b>
+                    </a>
                 </div>
             </section>
         </div>
     </main>
-    <footer>© 2026 Resenhário · Histórias para ler, assistir e compartilhar.</footer>
+    <footer>© 2026 Resenhário · Sistema web em C# com .NET 10 (ASP.NET Core).</footer>
     <script src="js/script.js"></script>
 </body>
 </html>

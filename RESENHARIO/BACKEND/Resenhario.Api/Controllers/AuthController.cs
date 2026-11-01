@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Resenhario.Api.Data;
@@ -11,7 +10,6 @@ namespace Resenhario.Api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly AppDbContext _context;
-    private readonly PasswordHasher<Usuario> _hasher = new();
 
     public AuthController(AppDbContext context) => _context = context;
 
@@ -35,9 +33,11 @@ public class AuthController : ControllerBase
         {
             Nome = dados.Nome.Trim(),
             Email = email,
-            DataCadastro = DateTime.Now
+            DataCadastro = DateTime.Now,
+            // Hashing com BCrypt conforme especificado nos requisitos do projeto
+            SenhaHash = BCrypt.Net.BCrypt.HashPassword(dados.Senha)
         };
-        usuario.SenhaHash = _hasher.HashPassword(usuario, dados.Senha);
+
         _context.Usuarios.Add(usuario);
         await _context.SaveChangesAsync();
 
@@ -52,17 +52,19 @@ public class AuthController : ControllerBase
         if (usuario == null)
             return Unauthorized("E-mail ou senha incorretos.");
 
-        PasswordVerificationResult resultado;
+        bool senhaValida = false;
         try
         {
-            resultado = _hasher.VerifyHashedPassword(usuario, usuario.SenhaHash, dados.Senha);
+            // Validação com BCrypt
+            senhaValida = BCrypt.Net.BCrypt.Verify(dados.Senha, usuario.SenhaHash);
         }
-        catch (Exception ex) when (ex is FormatException or ArgumentException)
+        catch (Exception)
         {
-            // Os usuários de teste antigos possuem valores fictícios, não hashes reais.
-            return Unauthorized("Esta conta de teste não possui uma senha válida. Crie uma conta nova.");
+            // Compatibilidade: contas de teste antigas sem hash BCrypt válido
+            return Unauthorized("Esta conta de teste não possui uma senha criptografada válida. Por favor, crie uma conta nova.");
         }
-        if (resultado == PasswordVerificationResult.Failed)
+
+        if (!senhaValida)
             return Unauthorized("E-mail ou senha incorretos.");
 
         return Ok(new UsuarioResposta(usuario.IdUsuario, usuario.Nome, usuario.Email));

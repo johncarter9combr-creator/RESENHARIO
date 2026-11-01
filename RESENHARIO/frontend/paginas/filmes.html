@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,58 +9,51 @@
 <body>
     <header class="topo">
         <a class="marca" href="../index.html">Resenhário</a>
-
         <nav>
             <a href="../index.html">Início</a>
             <a href="livros.html">Livros</a>
             <a href="filmes.html">Filmes</a>
-            <a href="series.html">Séries</a>
-            <a href="estante.html">Minha estante</a>
+            <a href="ranking.html">Ranking Adaptações</a>
             <a href="reviews.html">Resenhas</a>
+            <a href="estante.html">Minha estante</a>
             <a href="login.html">Entrar</a>
         </nav>
     </header>
 
     <main class="pagina">
         <section class="cabecalho-pagina">
-            <p class="sobretitulo">HISTÓRIAS QUE GANHAM VIDA</p>
-            <h1>Filmes</h1>
-            <p>Pesquise filmes e adicione seus favoritos ao catálogo.</p>
+            <p class="sobretitulo">INTEGRAÇÃO TMDB API</p>
+            <h1>Catálogo Cinematográfico</h1>
+            <p>Pesquise produções e pôsteres oficiais no The Movie Database (TMDB) para associar a livros ou guardar na sua estante.</p>
         </section>
 
-        <section class="secao">
-            <h2>Pesquisar filmes</h2>
-
+        <section class="busca">
             <form id="form-busca-filmes">
                 <input
-                    type="text"
+                    type="search"
                     id="termo-filme"
-                    placeholder="Digite o nome do filme"
+                    placeholder="Pesquise o título do filme no TMDB..."
                     required
                 >
-                <button type="submit">Pesquisar</button>
+                <button type="submit">Buscar no TMDB</button>
             </form>
-
-            <p id="mensagem-busca-filmes"
-               class="mensagem"
-               aria-live="polite"></p>
-
+            <p id="mensagem-busca-filmes" class="mensagem" aria-live="polite"></p>
             <div id="resultados-filmes" class="grade-capas"></div>
         </section>
 
         <section class="secao">
-            <h2>Filmes cadastrados</h2>
-
+            <div class="titulo-secao">
+                <div>
+                    <p class="sobretitulo">FILMES REGISTRADOS</p>
+                    <h2>Filmes no Resenhário</h2>
+                </div>
+            </div>
             <div id="lista-filmes" class="grade-capas"></div>
-
-            <p id="mensagem-filmes"
-               class="mensagem"
-               aria-live="polite"></p>
+            <p id="mensagem-filmes" class="mensagem" aria-live="polite"></p>
         </section>
     </main>
 
-    <footer>© 2026 Resenhário · Histórias para ler e assistir.</footer>
-
+    <footer>© 2026 Resenhário · Conectando literatura e audiovisual.</footer>
     <script src="../js/script.js"></script>
 </body>
 </html>

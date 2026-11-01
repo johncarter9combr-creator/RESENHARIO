@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Pd3Mb9BWC80=",
+  "dgSpecHash": "ZrFY1MU9BsU=",
   "success": true,
   "projectFilePath": "C:\\Users\\johnc\\OneDrive\\Documentos\\ESTUDOS\\CSharp\\RESENHARIO_COMPLETO\\RESENHARIO\\BACKEND\\Resenhario.Api\\Resenhario.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\johnc\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\johnc\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\johnc\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
     "C:\\Users\\johnc\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -33,5 +34,18 @@
     "C:\\Users\\johnc\\.nuget\\packages\\system.composition.runtime\\7.0.0\\system.composition.runtime.7.0.0.nupkg.sha512",
     "C:\\Users\\johnc\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "O pacote 'MySqlConnector' 2.4.0 tem uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-473q-m89c-ghf8",
+      "projectPath": "C:\\Users\\johnc\\OneDrive\\Documentos\\ESTUDOS\\CSharp\\RESENHARIO_COMPLETO\\RESENHARIO\\BACKEND\\Resenhario.Api\\Resenhario.Api.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\johnc\\OneDrive\\Documentos\\ESTUDOS\\CSharp\\RESENHARIO_COMPLETO\\RESENHARIO\\BACKEND\\Resenhario.Api\\Resenhario.Api.csproj",
+      "libraryId": "MySqlConnector",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

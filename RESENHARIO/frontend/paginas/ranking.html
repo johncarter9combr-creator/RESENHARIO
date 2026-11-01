@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Adaptações - Resenhário</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="topo">
+        <a class="marca" href="../index.html">Resenhário</a>
+        <nav>
+            <a href="../index.html">Início</a>
+            <a href="livros.html">Livros</a>
+            <a href="filmes.html">Filmes</a>
+            <a href="ranking.html">Ranking Adaptações</a>
+            <a href="reviews.html">Resenhas</a>
+            <a href="estante.html">Minha estante</a>
+            <a href="login.html">Entrar</a>
+        </nav>
+    </header>
+
+    <main class="pagina">
+        <section class="cabecalho-pagina">
+            <p class="sobretitulo">DO PAPEL PARA AS TELAS</p>
+            <h1>Ranking de Fidelidade</h1>
+            <p>Descubra quais adaptações cinematográficas foram mais fiéis aos livros originais segundo a comunidade de leitores.</p>
+        </section>
+
+        <!-- Formulário para criar vínculo entre livro e filme (Módulo Multimídia) -->
+        <section class="secao form-dupla-avaliacao">
+            <h2>Vincular Obra Literária a Filme</h2>
+            <p style="color: var(--suave); margin-bottom: 15px; font-size: 14px;">
+                Conecte um livro do catálogo à sua respectiva adaptação para habilitar a avaliação comparativa de fidelidade.
+            </p>
+            <form id="form-vincular-adaptacao" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 220px;">
+                    <label for="select-vinculo-livro">Livro no Catálogo</label>
+                    <select id="select-vinculo-livro" required>
+                        <option value="">Carregando livros...</option>
+                    </select>
+                </div>
+                <div style="flex: 1; min-width: 220px;">
+                    <label for="select-vinculo-filme">Filme no Catálogo</label>
+                    <select id="select-vinculo-filme" required>
+                        <option value="">Carregando filmes...</option>
+                    </select>
+                </div>
+                <div style="align-self: flex-end; width: 100%; margin-top: 10px;">
+                    <button type="submit">Vincular Adaptação</button>
+                </div>
+            </form>
+            <p id="mensagem-vinculo" class="mensagem" aria-live="polite"></p>
+        </section>
+
+        <!-- Lista de Melhores Adaptações Ordenada por Fidelidade -->
+        <section class="secao">
+            <div class="titulo-secao">
+                <div>
+                    <p class="sobretitulo">CLASSIFICAÇÃO GERAL</p>
+                    <h2>Melhores Adaptações Cinematográficas</h2>
+                </div>
+            </div>
+
+            <p id="mensagem-ranking" class="mensagem" aria-live="polite">Carregando ranking...</p>
+            <div id="lista-ranking" class="grade-ranking"></div>
+        </section>
+    </main>
+
+    <footer>© 2026 Resenhário · Conectando literatura e audiovisual.</footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
+

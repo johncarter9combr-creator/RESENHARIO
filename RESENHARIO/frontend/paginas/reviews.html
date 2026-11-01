@@ -1,14 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resenhas - Resenhário</title><link rel="stylesheet" href="../css/style.css"></head>
-<body><header class="topo"><a class="marca" href="../index.html">Resenhário</a><nav>
-<a href="../index.html">Início</a><a href="livros.html">Livros</a><a href="filmes.html">Filmes</a>
-            <a href="series.html">Séries</a><a href="estante.html">Minha estante</a><a href="reviews.html">Resenhas</a><a href="login.html">Entrar</a>
-</nav></header><main class="pagina"><section class="cabecalho-pagina"><p class="sobretitulo">OPINIÕES DA COMUNIDADE</p><h1>Resenhas</h1><p>Compartilhe sua opinião sobre os livros que leu.</p></section>
-<section class="secao"><h2>Escrever resenha</h2><form id="form-review">
-<label for="review-livro">Livro</label><select id="review-livro" required></select>
-<label for="review-nota">Nota (0 a 10)</label><input id="review-nota" type="number" min="0" max="10" step="1" required>
-<label for="review-comentario">Comentário</label><textarea id="review-comentario" rows="4" required placeholder="O que achou da história?"></textarea>
-<button type="submit">Publicar resenha</button></form><p id="mensagem-reviews" class="mensagem" aria-live="polite"></p></section>
-<section class="secao"><h2>Resenhas publicadas</h2><div id="lista-reviews" class="lista-reviews"></div></section></main>
-<footer>© 2026 Resenhário · Histórias para ler e assistir.</footer><script src="../js/script.js"></script></body></html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resenhas da Comunidade - Resenhário</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="topo">
+        <a class="marca" href="../index.html">Resenhário</a>
+        <nav>
+            <a href="../index.html">Início</a>
+            <a href="livros.html">Livros</a>
+            <a href="filmes.html">Filmes</a>
+            <a href="ranking.html">Ranking Adaptações</a>
+            <a href="reviews.html">Resenhas</a>
+            <a href="estante.html">Minha estante</a>
+            <a href="login.html">Entrar</a>
+        </nav>
+    </header>
+
+    <main class="pagina">
+        <section class="cabecalho-pagina">
+            <p class="sobretitulo">OPINIÕES E CRÍTICAS</p>
+            <h1>Resenhas Comunitárias</h1>
+            <p>Compartilhe suas leituras e compare a fidelidade das adaptações com a comunidade de leitores.</p>
+        </section>
+
+        <!-- Formulário de Publicação com Avaliação Dupla (Livro 1 a 5 + Fidelidade 1 a 5) -->
+        <section class="secao form-dupla-avaliacao">
+            <h2>Escrever Resenha</h2>
+            <form id="form-review">
+                <div>
+                    <label for="review-livro">Livro Avaliado</label>
+                    <select id="review-livro" required>
+                        <option value="">Selecione um livro...</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Nota da Obra Literária (1 a 5 estrelas)</label>
+                    <div class="estrelas-seletor" id="estrelas-livro">
+                        <input type="radio" id="estrela5" name="notaLivro" value="5" required><label for="estrela5"
+                            title="5 estrelas">★</label>
+                        <input type="radio" id="estrela4" name="notaLivro" value="4"><label for="estrela4"
+                            title="4 estrelas">★</label>
+                        <input type="radio" id="estrela3" name="notaLivro" value="3"><label for="estrela3"
+                            title="3 estrelas">★</label>
+                        <input type="radio" id="estrela2" name="notaLivro" value="2"><label for="estrela2"
+                            title="2 estrelas">★</label>
+                        <input type="radio" id="estrela1" name="notaLivro" value="1"><label for="estrela1"
+                            title="1 estrela">★</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="check-assistiu-filme" style="width: auto;">
+                        <span>Eu assisti à adaptação cinematográfica desta obra</span>
+                    </label>
+                </div>
+
+                <div id="bloco-fidelidade" class="painel-fidelidade-opcional" hidden>
+                    <label for="review-adaptacao">Adaptação Cinematográfica</label>
+                    <select id="review-adaptacao">
+                        <option value="">Selecione o vínculo com o filme...</option>
+                    </select>
+
+                    <label style="margin-top: 14px; display: block;">Nota de Fidelidade Filme vs Livro (1 a 5
+                        estrelas)</label>
+                    <div class="estrelas-seletor" id="estrelas-fidelidade">
+                        <input type="radio" id="fid5" name="notaFidelidade" value="5"><label for="fid5"
+                            title="5 estrelas - Extremamente Fiel">★</label>
+                        <input type="radio" id="fid4" name="notaFidelidade" value="4"><label for="fid4"
+                            title="4 estrelas - Muito Fiel">★</label>
+                        <input type="radio" id="fid3" name="notaFidelidade" value="3"><label for="fid3"
+                            title="3 estrelas - Fiel em partes">★</label>
+                        <input type="radio" id="fid2" name="notaFidelidade" value="2"><label for="fid2"
+                            title="2 estrelas - Pouco Fiel">★</label>
+                        <input type="radio" id="fid1" name="notaFidelidade" value="1"><label for="fid1"
+                            title="1 estrela - Totalmente Descaracterizado">★</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="review-comentario">Seu comentário crítico</label>
+                    <textarea id="review-comentario" rows="4" required
+                        placeholder="O que achou da obra? Discuta a profundidade do texto e, se assistiu, compare com a versão em filme..."></textarea>
+                </div>
+
+                <button type="submit">Publicar Resenha</button>
+            </form>
+            <p id="mensagem-reviews" class="mensagem" aria-live="polite"></p>
+        </section>
+
+        <!-- Feed Comunitário de Resenhas -->
+        <section class="secao">
+            <div class="titulo-secao">
+                <div>
+                    <p class="sobretitulo">FEED SOCIAL</p>
+                    <h2>Últimas Resenhas Publicadas</h2>
+                </div>
+            </div>
+            <div id="lista-reviews" class="lista-reviews"></div>
+        </section>
+    </main>
+
+    <footer>© 2026 Resenhário · Conectando literatura e audiovisual.</footer>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

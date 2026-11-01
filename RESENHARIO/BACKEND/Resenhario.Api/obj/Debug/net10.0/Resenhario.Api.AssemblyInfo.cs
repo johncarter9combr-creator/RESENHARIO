@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Resenhario.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c152e367e756b758bf9e721984fd6942f26a6ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("Resenhario.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Resenhario.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

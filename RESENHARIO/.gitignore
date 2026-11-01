@@ -1,0 +1,17 @@
+# Configurações e arquivos secretos
+.env
+.env.*
+!.env.example
+secrets.json
+
+# Arquivos gerados pelo C# / .NET
+**/bin/
+**/obj/
+
+# Configurações locais do VS Code
+.vscode/
+
+# Arquivos temporários
+*.log
+Thumbs.db
+

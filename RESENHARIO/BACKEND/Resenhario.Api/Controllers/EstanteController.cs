@@ -12,11 +12,22 @@ public class EstanteController : ControllerBase
     private readonly AppDbContext _context;
     public EstanteController(AppDbContext context) => _context = context;
 
-    public record EstanteItem(int IdEstante, int IdUsuario, int? IdLivros, int? IdFilme,
-        int? IdSerie, string Status, string? Titulo, string? Autor, string Tipo, DateTime DataAtualizacao);
+    public record EstanteItem(
+        int IdEstante,
+        int IdUsuario,
+        int? IdLivros,
+        int? IdFilme,
+        int? IdSerie,
+        string Status,
+        string? Titulo,
+        string? Autor,
+        string? CapaUrl,
+        string Tipo,
+        DateTime DataAtualizacao
+    );
 
     [HttpGet]
-    public async Task<IActionResult> GetEstantes([FromQuery] int? usuarioId)
+    public async Task<IActionResult> GetEstantes([FromQuery] int? usuarioId, [FromQuery] string? status)
     {
         var query =
             from e in _context.Estantes
@@ -27,12 +38,23 @@ public class EstanteController : ControllerBase
             from f in filmes.DefaultIfEmpty()
             join s0 in _context.Series on e.IdSerie equals (int?)s0.IdSerie into series
             from s in series.DefaultIfEmpty()
-            select new EstanteItem(e.IdEstante, e.IdUsuario, e.IdLivros, e.IdFilme, e.IdSerie,
-                e.Status, l != null ? l.Titulo : f != null ? f.Titulo : s != null ? s.Titulo : "Item",
+            select new EstanteItem(
+                e.IdEstante,
+                e.IdUsuario,
+                e.IdLivros,
+                e.IdFilme,
+                e.IdSerie,
+                e.Status,
+                l != null ? l.Titulo : f != null ? f.Titulo : s != null ? s.Titulo : "Item",
                 l != null ? l.Autor : f != null ? f.Diretor : null,
-                l != null ? "Livro" : f != null ? "Filme" : "Série", e.DataAtualizacao);
+                l != null ? l.CapaUrl : f != null ? f.PosterUrl : s != null ? s.ImagemUrl : null,
+                l != null ? "Livro" : f != null ? "Filme" : "Série",
+                e.DataAtualizacao
+            );
 
         if (usuarioId.HasValue) query = query.Where(e => e.IdUsuario == usuarioId.Value);
+        if (!string.IsNullOrWhiteSpace(status)) query = query.Where(e => e.Status.ToLower() == status.Trim().ToLower());
+
         return Ok(await query.OrderByDescending(e => e.DataAtualizacao).ToListAsync());
     }
 
@@ -54,11 +76,17 @@ public class EstanteController : ControllerBase
         if (duplicado) return Conflict("Esse item já está na sua estante.");
 
         estante.DataAtualizacao = DateTime.Now;
-        if (string.IsNullOrWhiteSpace(estante.Status)) estante.Status = "Quero ver";
+        if (string.IsNullOrWhiteSpace(estante.Status))
+        {
+            estante.Status = estante.IdLivros.HasValue ? "Quero Ler" : "Quero ver";
+        }
+
         _context.Estantes.Add(estante);
         await _context.SaveChangesAsync();
-        return Ok(new { mensagem = "Item adicionado à estante.", estante.IdEstante });
+        return Ok(new { mensagem = "Item adicionado à estante com sucesso.", estante.IdEstante });
     }
+
+    public record AtualizarStatusRequest(string Status);
 
     [HttpPut("{id:int}")]
     public async Task<IActionResult> AtualizarEstante(int id, [FromQuery] int usuarioId, [FromBody] AtualizarStatusRequest dados)
@@ -66,15 +94,23 @@ public class EstanteController : ControllerBase
         var estante = await _context.Estantes.FindAsync(id);
         if (estante == null) return NotFound();
         if (estante.IdUsuario != usuarioId) return Forbid();
-        var statusValidos = new[] { "Quero ler", "Lendo", "Lido", "Quero ver", "Assistindo", "Assistido" };
-        if (!statusValidos.Contains(dados.Status)) return BadRequest("Status inválido.");
-        estante.Status = dados.Status;
+
+        // Status especificados no escopo: Quero Ler, Lendo, Lido, Abandonado
+        var statusValidos = new[]
+        {
+            "Quero Ler", "Lendo", "Lido", "Abandonado",
+            "Quero ver", "Assistindo", "Assistido"
+        };
+
+        var match = statusValidos.FirstOrDefault(s => s.Equals(dados.Status?.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (match == null)
+            return BadRequest($"Status inválido. Valores aceitos: {string.Join(", ", statusValidos)}");
+
+        estante.Status = match;
         estante.DataAtualizacao = DateTime.Now;
         await _context.SaveChangesAsync();
         return NoContent();
     }
-
-    public record AtualizarStatusRequest(string Status);
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeletarEstante(int id, [FromQuery] int usuarioId)
